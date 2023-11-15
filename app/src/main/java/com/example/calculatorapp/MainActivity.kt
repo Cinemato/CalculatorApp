@@ -43,9 +43,9 @@ class MainActivity : AppCompatActivity() {
     private fun calculateAndSetResult(equation: String) {
         try {
             val result = Expression(equation).evaluate()
-
+            val roundingLimit = 10
             if(result.stringValue.contains(".")) {
-                val decimalResult: BigDecimal = result.numberValue.setScale(5, RoundingMode.HALF_EVEN)
+                val decimalResult: BigDecimal = result.numberValue.setScale((if (result.stringValue.split(".")[1].length > roundingLimit) roundingLimit else result.stringValue.split(".")[1].length), RoundingMode.HALF_EVEN)
                 binding.tvResult.text = decimalResult.toString()
             }
             else {
