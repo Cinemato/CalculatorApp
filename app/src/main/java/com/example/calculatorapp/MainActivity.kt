@@ -59,7 +59,10 @@ class MainActivity : AppCompatActivity() {
     private fun applyButtonOperation(button: Button) {
         binding.apply {
             when(button.text) {
-                "AC" -> tvNum.text = ""
+                "AC" -> {
+                    tvNum.text = ""
+                    tvResult.text = ""
+                }
                 "⌫" -> tvNum.text = tvNum.text.dropLast(1)
                 "=" -> calculateAndSetResult(tvNum.text.toString())
                 else -> {
