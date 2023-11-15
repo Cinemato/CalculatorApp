@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
             val result = Expression(equation).evaluate()
 
             if(result.stringValue.contains(".")) {
-                val decimalResult: BigDecimal = result.numberValue.setScale(10, RoundingMode.HALF_EVEN)
+                val decimalResult: BigDecimal = result.numberValue.setScale(5, RoundingMode.HALF_EVEN)
                 binding.tvResult.text = decimalResult.toString()
             }
             else {
