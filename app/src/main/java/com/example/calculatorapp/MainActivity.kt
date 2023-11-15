@@ -4,12 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import androidx.core.view.children
 import androidx.databinding.DataBindingUtil
 import com.example.calculatorapp.databinding.ActivityMainBinding
-import android.util.Log
+// import android.util.Log
 import android.view.ViewGroup
 import com.ezylang.evalex.*
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -42,9 +43,15 @@ class MainActivity : AppCompatActivity() {
     private fun calculateAndSetResult(equation: String) {
         try {
             val result = Expression(equation).evaluate()
-            binding.tvResult.text = result.stringValue
+
+            if(result.stringValue.contains(".")) {
+                val decimalResult: BigDecimal = result.numberValue.setScale(10, RoundingMode.HALF_EVEN)
+                binding.tvResult.text = decimalResult.toString()
+            }
+            else {
+                binding.tvResult.text = result.stringValue
+            }
         } catch (e: Exception) {
-            // Handle exceptions such as parsing errors or invalid equations
             binding.tvResult.text = "Invalid Input"
         }
     }
