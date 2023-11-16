@@ -6,14 +6,15 @@ import android.view.View
 import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import com.example.calculatorapp.databinding.ActivityMainBinding
-// import android.util.Log
 import android.view.ViewGroup
 import com.ezylang.evalex.*
 import java.math.BigDecimal
 import java.math.RoundingMode
+//import android.util.Log
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private var currentEquation = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,13 +37,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showButtonText(button: Button) {
+    private fun updateEquation(button: Button) {
         binding.tvNum.text = binding.tvNum.text.toString() + button.text.toString()
+        currentEquation += if (button.text == "x") "*" else button.text.toString()
     }
 
-    private fun calculateAndSetResult(equation: String) {
+    private fun calculateAndSetResult() {
         try {
-            val result = Expression(equation).evaluate()
+            val result = Expression(currentEquation).evaluate()
             val roundingLimit = 10
             if(result.stringValue.contains(".")) {
                 val decimalResult: BigDecimal = result.numberValue.setScale((if (result.stringValue.split(".")[1].length > roundingLimit) roundingLimit else result.stringValue.split(".")[1].length), RoundingMode.HALF_EVEN)
@@ -62,11 +64,15 @@ class MainActivity : AppCompatActivity() {
                 "AC" -> {
                     tvNum.text = ""
                     tvResult.text = ""
+                    currentEquation = ""
                 }
-                "⌫" -> tvNum.text = tvNum.text.dropLast(1)
-                "=" -> calculateAndSetResult(tvNum.text.toString())
+                "⌫" -> {
+                    tvNum.text = tvNum.text.dropLast(1)
+                    currentEquation = currentEquation.dropLast(1)
+                }
+                "=" -> calculateAndSetResult()
                 else -> {
-                    showButtonText(button)
+                    updateEquation(button)
                 }
             }
         }

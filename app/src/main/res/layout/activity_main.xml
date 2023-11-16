@@ -20,6 +20,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
+                android:textColor="@color/white"
                 android:text=""
                 android:textSize="28dp"
                 android:layout_margin="20dp" />
@@ -86,7 +87,7 @@
                 <Button
                     android:id="@+id/btnMulti"
                     style="@style/buttonOp"
-                    android:text="*">
+                    android:text="x">
 
                 </Button>
             </LinearLayout>
@@ -158,10 +159,16 @@
                     android:text="0">
 
                 </Button>
+
                 <Button
+                    android:id="@+id/btnEqual"
                     style="@style/buttonEqual"
                     android:text="=">
-
+                </Button>
+                <Button
+                    android:id="@+id/btnMod"
+                    style="@style/buttonOp"
+                    android:text="%">
                 </Button>
             </LinearLayout>
         </LinearLayout>
