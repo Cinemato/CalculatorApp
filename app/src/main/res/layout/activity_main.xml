@@ -58,10 +58,9 @@
                     style="@style/buttonNumber">
                 </Button>
                 <Button
-                    android:id="@+id/btnDivide"
+                    android:id="@+id/btnMod"
                     style="@style/buttonOp"
-                    android:text="/">
-
+                    android:text="%">
                 </Button>
             </LinearLayout>
             <LinearLayout
@@ -85,9 +84,9 @@
 
                 </Button>
                 <Button
-                    android:id="@+id/btnMulti"
+                    android:id="@+id/btnDivide"
                     style="@style/buttonOp"
-                    android:text="x">
+                    android:text="/">
 
                 </Button>
             </LinearLayout>
@@ -112,9 +111,9 @@
 
                 </Button>
                 <Button
-                    android:id="@+id/btnMinus"
+                    android:id="@+id/btnMulti"
                     style="@style/buttonOp"
-                    android:text="-">
+                    android:text="×">
 
                 </Button>
             </LinearLayout>
@@ -139,9 +138,9 @@
 
                 </Button>
                 <Button
-                    android:id="@+id/btnPlus"
+                    android:id="@+id/btnMinus"
                     style="@style/buttonOp"
-                    android:text="+">
+                    android:text="-">
 
                 </Button>
             </LinearLayout>
@@ -159,16 +158,22 @@
                     android:text="0">
 
                 </Button>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center">
 
+                    <Button
+                        android:id="@+id/btnEqual"
+                        style="@style/buttonEqual"
+                        android:text="="></Button>
+                </LinearLayout>
                 <Button
-                    android:id="@+id/btnEqual"
-                    style="@style/buttonEqual"
-                    android:text="=">
-                </Button>
-                <Button
-                    android:id="@+id/btnMod"
+                    android:id="@+id/btnPlus"
                     style="@style/buttonOp"
-                    android:text="%">
+                    android:text="+">
                 </Button>
             </LinearLayout>
         </LinearLayout>

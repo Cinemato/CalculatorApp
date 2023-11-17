@@ -25,10 +25,18 @@ class MainActivity : AppCompatActivity() {
                 val outerLayout: View = layoutBtn.getChildAt(i)
                 if (outerLayout is ViewGroup) {
                     for (j in 0 until outerLayout.childCount) {
-                        val button: View = outerLayout.getChildAt(j)
-                        if (button is Button) {
-                            button.setOnClickListener {
-                                applyButtonOperation(button)
+                        val view: View = outerLayout.getChildAt(j)
+                        if (view is Button) {
+                            view.setOnClickListener {
+                                applyButtonOperation(view)
+                            }
+                        }
+                        else if (view is ViewGroup) {
+                            val button: View = view.getChildAt(0)
+                            if (button is Button) {
+                                button.setOnClickListener {
+                                    applyButtonOperation(button)
+                                }
                             }
                         }
                     }
@@ -39,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateEquation(button: Button) {
         binding.tvNum.text = binding.tvNum.text.toString() + button.text.toString()
-        currentEquation += if (button.text == "x") "*" else button.text.toString()
+        currentEquation += if (button.text == "×") "*" else button.text.toString()
     }
 
     private fun calculateAndSetResult() {

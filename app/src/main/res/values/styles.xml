@@ -21,8 +21,11 @@
     </style>
 
     <style name="buttonEqual" parent="buttonNumber">
-        <item name="android:background">@color/orange</item>
         <item name="android:textSize">35dp</item>
+        <item name="android:layout_width">75dp</item>
+        <item name="android:layout_height">75dp</item>
+        <item name="android:layout_weight">0</item>
+        <item name="android:background">@drawable/round_button</item>
     </style>
 
     <style name="buttonUtil" parent="buttonNumber">
