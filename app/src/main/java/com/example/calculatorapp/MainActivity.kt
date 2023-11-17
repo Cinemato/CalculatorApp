@@ -51,18 +51,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun calculateAndSetResult() {
-        try {
-            val result = Expression(currentEquation).evaluate()
-            val roundingLimit = 10
-            if(result.stringValue.contains(".")) {
-                val decimalResult: BigDecimal = result.numberValue.setScale((if (result.stringValue.split(".")[1].length > roundingLimit) roundingLimit else result.stringValue.split(".")[1].length), RoundingMode.HALF_EVEN)
-                binding.tvResult.text = decimalResult.toString()
+        binding.apply {
+            if (currentEquation.isNotEmpty()) {
+                try {
+                    val result = Expression(currentEquation).evaluate()
+                    val roundingLimit = 10
+                    if(result.stringValue.contains(".")) {
+                        val decimalResult: BigDecimal = result.numberValue.setScale((if (result.stringValue.split(".")[1].length > roundingLimit) roundingLimit else result.stringValue.split(".")[1].length), RoundingMode.HALF_EVEN)
+                        tvResult.text = decimalResult.toString()
+                    }
+                    else {
+                        tvResult.text = result.stringValue
+                    }
+                } catch (e: Exception) {
+                    tvResult.text = "Invalid Input"
+                }
             }
-            else {
-                binding.tvResult.text = result.stringValue
-            }
-        } catch (e: Exception) {
-            binding.tvResult.text = "Invalid Input"
         }
     }
 
